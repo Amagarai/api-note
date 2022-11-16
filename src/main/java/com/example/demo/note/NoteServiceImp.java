@@ -16,6 +16,7 @@ public class NoteServiceImp implements NoteService{
     UserRepository userRepository;
 
 
+    //-------Add note
     @Override
     public Note addNote(Note note, Long id) {
         Utilisateur user = userRepository.findById(id).get();
@@ -30,11 +31,13 @@ public class NoteServiceImp implements NoteService{
     }
 
 
+    //---Pour modifier le note ( ** pas de developper a mettre dans les perspective de l'appli peut-etre **)
     @Override
     public Note updateNote(Long id) {
         return null;
     }
 
+    //--------voir les detauls d'un note (** faire allongé le card sur le front **)
     @Override
     public Note viewDetail(Long id) {
         Note note = noteRepository.findById(id).get();
@@ -47,6 +50,7 @@ public class NoteServiceImp implements NoteService{
         return noteRepository.save(note);
     }
 
+    //---------- changer le satut de d'une note...
     @Override
     public Note statut(Long id) {
         Note note = noteRepository.findById(id).get();

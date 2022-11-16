@@ -26,4 +26,10 @@ public class CategorieController {
         userRepository.save(user);
         return categorie;
     }
+
+    @GetMapping("list/{id}")
+    public List<Categorie> ListeByUser(@PathVariable Long id){
+        Utilisateur user = userRepository.findById(id).get();
+        return user.getCategories();
+    }
 }
