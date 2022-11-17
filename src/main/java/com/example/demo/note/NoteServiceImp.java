@@ -1,6 +1,8 @@
 package com.example.demo.note;
 
 import com.example.demo.Statut;
+import com.example.demo.categorie.Categorie;
+import com.example.demo.categorie.CategorieRepository;
 import com.example.demo.user.UserRepository;
 import com.example.demo.user.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,8 @@ public class NoteServiceImp implements NoteService{
     NoteRepository noteRepository;
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    CategorieRepository categorieRepository;
 
     //-------Add note
     @Override
@@ -27,6 +30,12 @@ public class NoteServiceImp implements NoteService{
         list.add(note);
         user.setNotes(list);
         userRepository.save(user);
+        //--fin
+        //----Incrementation du nombre d'utilisation de la categorie
+        int categorie = note.getCategorie().getUtilisation();
+        categorie = 1 + note.getCategorie().getUtilisation();
+        note.getCategorie().setUtilisation(categorie);
+        categorieRepository.save(note.getCategorie());
         return note;
     }
 
