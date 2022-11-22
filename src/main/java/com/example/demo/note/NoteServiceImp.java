@@ -21,8 +21,10 @@ public class NoteServiceImp implements NoteService{
 
     //-------Add note
     @Override
-    public Note addNote(Note note, Long id) {
+    public Note addNote(Note note, Long id, Long id_cate) {
         Utilisateur user = userRepository.findById(id).get();
+        Categorie categorie = categorieRepository.findById(id_cate).get();
+        note.setCategorie(categorie);
         note.setStatut(Statut.EnCour);
         noteRepository.save(note);
         //----ajout de la note a la liste des notes du user
@@ -32,9 +34,9 @@ public class NoteServiceImp implements NoteService{
         userRepository.save(user);
         //--fin
         //----Incrementation du nombre d'utilisation de la categorie
-        int categorie = note.getCategorie().getUtilisation();
-        categorie = 1 + note.getCategorie().getUtilisation();
-        note.getCategorie().setUtilisation(categorie);
+        int categorie_use = note.getCategorie().getUtilisation();
+        categorie_use = 1 + note.getCategorie().getUtilisation();
+        note.getCategorie().setUtilisation(categorie_use);
         categorieRepository.save(note.getCategorie());
         return note;
     }
@@ -65,6 +67,12 @@ public class NoteServiceImp implements NoteService{
         Note note = noteRepository.findById(id).get();
         note.setStatut(Statut.Terminer);
         return null;
+    }
+
+    @Override
+    public List<Note> myNote(Long id) {
+        Utilisateur utilisateur = userRepository.findById(id).get();
+        return utilisateur.getNotes();
     }
 
 
