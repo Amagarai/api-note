@@ -18,4 +18,9 @@ public class UserController {
     public Utilisateur Login(@PathVariable String pseudo, @PathVariable String pass){
         return userServiceImp.Login(pseudo, pass);
     }
+
+    @PutMapping("update/{id}")
+    public Utilisateur updatePass(@PathVariable Long id, @RequestBody Utilisateur utilisateur){
+        return userServiceImp.updatePass(id, utilisateur);
+    }
 }

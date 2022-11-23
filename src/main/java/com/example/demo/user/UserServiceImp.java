@@ -23,4 +23,11 @@ public class UserServiceImp implements UserService{
     public Utilisateur Login(String pseudo, String pass) {
         return userRepository.findByPseudoAndPassword(pseudo, pass);
     }
+
+    @Override
+    public Utilisateur updatePass(Long id, Utilisateur utilisateur) {
+        Utilisateur exitant = userRepository.findById(id).get();
+        exitant.setPassword(utilisateur.getPassword());
+        return userRepository.save(exitant);
+    }
 }

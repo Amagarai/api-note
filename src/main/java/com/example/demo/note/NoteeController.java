@@ -12,6 +12,8 @@ import java.util.List;
 public class NoteeController {
     @Autowired
     NoteServiceImp noteServiceImp;
+    @Autowired
+    NoteRepository noteRepository;
 
     @PostMapping("add/{id}/{id_cate}")
     public Note addNote(@RequestBody Note note,@PathVariable Long id, @PathVariable Long id_cate){
@@ -21,5 +23,10 @@ public class NoteeController {
     @GetMapping("mynote/{id}")
     public List<Note> ListNote(@PathVariable Long id){
         return noteServiceImp.myNote(id);
+    }
+
+    @GetMapping("{id}")
+    public Note Detail(@PathVariable Long id){
+        return noteRepository.findById(id).get();
     }
 }
