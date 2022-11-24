@@ -44,8 +44,10 @@ public class NoteServiceImp implements NoteService{
 
     //---Pour modifier le note ( ** pas de developper a mettre dans les perspective de l'appli peut-etre **)
     @Override
-    public Note updateNote(Long id) {
-        return null;
+    public Note updateNote(Long id, Note note) {
+        Note curentNote = noteRepository.findById(id).get();
+        curentNote.setContenu(note.getContenu());
+        return noteRepository.save(note);
     }
 
     //--------voir les detauls d'un note (** faire allongé le card sur le front **)

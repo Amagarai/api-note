@@ -29,4 +29,9 @@ public class NoteeController {
     public Note Detail(@PathVariable Long id){
         return noteRepository.findById(id).get();
     }
+
+    @PutMapping("update/{id}")
+    public Note updateNote(@PathVariable Long id, @RequestBody Note note){
+        return noteServiceImp.updateNote(id, note);
+    }
 }
