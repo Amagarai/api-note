@@ -4,6 +4,7 @@ package com.example.demo.note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,5 +34,10 @@ public class NoteeController {
     @PutMapping("update/{id}")
     public Note updateNote(@PathVariable Long id, @RequestBody Note note){
         return noteServiceImp.updateNote(id, note);
+    }
+
+    @PutMapping("delete/{id}")
+    public Note delete(@PathVariable Long id){
+        return noteServiceImp.statut(id);
     }
 }

@@ -1,5 +1,5 @@
 package com.example.demo;
 
-public enum Statut {
-    EnCour,Terminer
+public enum  Statut {
+    Activer,Delete
 }

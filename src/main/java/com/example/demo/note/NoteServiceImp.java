@@ -8,6 +8,7 @@ import com.example.demo.user.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,7 +26,7 @@ public class NoteServiceImp implements NoteService{
         Utilisateur user = userRepository.findById(id).get();
         Categorie categorie = categorieRepository.findById(id_cate).get();
         note.setCategorie(categorie);
-        note.setStatut(Statut.EnCour);
+        note.setStatut(Statut.Activer);
         noteRepository.save(note);
         //----ajout de la note a la liste des notes du user
         List<Note> list = user.getNotes();
@@ -67,14 +68,21 @@ public class NoteServiceImp implements NoteService{
     @Override
     public Note statut(Long id) {
         Note note = noteRepository.findById(id).get();
-        note.setStatut(Statut.Terminer);
-        return null;
+        note.setStatut(Statut.Delete);
+        return noteRepository.save(note);
     }
 
     @Override
     public List<Note> myNote(Long id) {
         Utilisateur utilisateur = userRepository.findById(id).get();
-        return utilisateur.getNotes();
+        List<Note> list = new ArrayList<>();
+        for (int i = 0; i<utilisateur.getNotes().size(); i++){
+            if (utilisateur.getNotes().get(i).getStatut() == Statut.Activer){
+                list.add(utilisateur.getNotes().get(i));
+                System.out.println(list);
+            }
+        }
+        return list;
     }
 
 
