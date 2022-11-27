@@ -82,7 +82,7 @@ public class NoteServiceImp implements NoteService{
                 System.out.println(list);
             }
         }
-        return list;
+        return utilisateur.getNotes();
     }
 
 
