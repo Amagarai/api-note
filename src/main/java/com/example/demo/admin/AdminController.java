@@ -1,11 +1,17 @@
 package com.example.demo.admin;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("api/admin")
+@RequestMapping("api/admin/")
 public class AdminController {
+    @Autowired
+    AdminRepository adminRepository;
+
+    @GetMapping("{pseudo}/{pass}")
+    public Admin Login(@PathVariable String pseudo, @PathVariable String pass){
+        return adminRepository.findByLoginAndPassword(pseudo, pass);
+    }
 }

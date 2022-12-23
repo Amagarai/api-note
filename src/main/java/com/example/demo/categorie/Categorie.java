@@ -20,4 +20,6 @@ public class Categorie {
     private LocalDate date;
     private int utilisation;
     private boolean detail;
+    @ManyToOne
+    private Utilisateur user;
 }

@@ -19,6 +19,8 @@ public class Utilisateur {
     private Long id;
     private String pseudo;
     private String password;
+    private String nomComplet;
+    private String numero;
     @OneToMany
     private List<Note> notes = new ArrayList<>();
     @OneToMany

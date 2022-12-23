@@ -30,4 +30,13 @@ public class UserServiceImp implements UserService{
         exitant.setPassword(utilisateur.getPassword());
         return userRepository.save(exitant);
     }
+
+    @Override
+    public Utilisateur updateCompte(Utilisateur utilisateur, Long id) {
+        Utilisateur user = userRepository.findById(id).get();
+        user.setPseudo(utilisateur.getPseudo());
+        user.setNomComplet(utilisateur.getNomComplet());
+        user.setNumero(utilisateur.getNumero());
+        return userRepository.save(user);
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.demo.note;
 
 
+import com.example.demo.categorie.Categorie;
+import com.example.demo.categorie.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,8 @@ public class NoteeController {
     NoteServiceImp noteServiceImp;
     @Autowired
     NoteRepository noteRepository;
+    @Autowired
+    CategorieRepository categorieRepository;
 
     @PostMapping("add/{id}/{id_cate}")
     public Note addNote(@RequestBody Note note,@PathVariable Long id, @PathVariable Long id_cate){
@@ -39,5 +43,16 @@ public class NoteeController {
     @PutMapping("delete/{id}")
     public Note delete(@PathVariable Long id){
         return noteServiceImp.statut(id);
+    }
+
+    @GetMapping("list")
+    public List<Note> Liste(){
+        return noteRepository.findAll();
+    }
+
+    @GetMapping("liste/{id}")
+    public List<Note> noteParCategorie(@PathVariable Long id){
+        Categorie categorie = categorieRepository.findById(id).get();
+        return noteRepository.findByCategorie(categorie);
     }
 }

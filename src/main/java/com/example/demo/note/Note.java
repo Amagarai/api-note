@@ -2,6 +2,7 @@ package com.example.demo.note;
 
 import com.example.demo.Statut;
 import com.example.demo.categorie.Categorie;
+import com.example.demo.user.Utilisateur;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,6 @@ public class Note {
 
     @OneToOne
     private Categorie categorie;
+    @ManyToOne
+    private Utilisateur utilisateur;
 }
