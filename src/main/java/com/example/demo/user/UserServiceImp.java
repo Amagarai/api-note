@@ -4,6 +4,8 @@ import com.example.demo.note.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class UserServiceImp implements UserService{
     @Autowired
@@ -11,6 +13,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public Utilisateur addUser(Utilisateur utilisateur) {
+        utilisateur.setDate(LocalDate.now());
         return userRepository.save(utilisateur);
     }
 

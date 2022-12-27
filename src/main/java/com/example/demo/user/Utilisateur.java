@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class Utilisateur {
     private String password;
     private String nomComplet;
     private String numero;
+    private LocalDate date;
     @OneToMany
 
     private List<Note> notes = new ArrayList<>();

@@ -20,6 +20,7 @@ public class Categorie {
     private LocalDate date;
     private int utilisation;
     private boolean detail;
+    private String color;
     @ManyToOne
     private Utilisateur user;
 }
