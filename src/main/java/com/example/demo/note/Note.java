@@ -3,6 +3,7 @@ package com.example.demo.note;
 import com.example.demo.Statut;
 import com.example.demo.categorie.Categorie;
 import com.example.demo.user.Utilisateur;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,5 +28,6 @@ public class Note {
     @OneToOne
     private Categorie categorie;
     @ManyToOne
+    @JsonIgnore
     private Utilisateur utilisateur;
 }

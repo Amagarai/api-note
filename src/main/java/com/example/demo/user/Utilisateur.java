@@ -2,6 +2,7 @@ package com.example.demo.user;
 
 import com.example.demo.categorie.Categorie;
 import com.example.demo.note.Note;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Utilisateur {
     private String nomComplet;
     private String numero;
     @OneToMany
+
     private List<Note> notes = new ArrayList<>();
     @OneToMany
     private List<Categorie> categories = new ArrayList<>();

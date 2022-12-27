@@ -76,14 +76,7 @@ public class NoteServiceImp implements NoteService{
     @Override
     public List<Note> myNote(Long id) {
         Utilisateur utilisateur = userRepository.findById(id).get();
-        List<Note> list = new ArrayList<>();
-        for (int i = 0; i<utilisateur.getNotes().size(); i++){
-            if (utilisateur.getNotes().get(i).getStatut() == Statut.Activer){
-                list.add(utilisateur.getNotes().get(i));
-                System.out.println(list);
-            }
-        }
-        return list;
+        return noteRepository.findByStatutAndUtilisateur(Statut.Activer, utilisateur);
     }
 
 
