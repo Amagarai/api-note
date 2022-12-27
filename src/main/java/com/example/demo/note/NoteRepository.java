@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface NoteRepository extends JpaRepository<Note, Long> {
     public List<Note> findByStatutAndUtilisateur(Statut statut, Utilisateur user);
-    public List<Note> findByCategorie(Categorie categorie);
+    public List<Note> findByCategorieAndUtilisateur(Categorie categorie, Utilisateur utilisateur);
 }

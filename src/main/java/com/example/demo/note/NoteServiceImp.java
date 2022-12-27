@@ -27,6 +27,7 @@ public class NoteServiceImp implements NoteService{
         Categorie categorie = categorieRepository.findById(id_cate).get();
         note.setCategorie(categorie);
         note.setStatut(Statut.Activer);
+        note.setUtilisateur(user);
         noteRepository.save(note);
         //----ajout de la note a la liste des notes du user
         List<Note> list = user.getNotes();

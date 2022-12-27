@@ -3,6 +3,8 @@ package com.example.demo.note;
 
 import com.example.demo.categorie.Categorie;
 import com.example.demo.categorie.CategorieRepository;
+import com.example.demo.user.UserRepository;
+import com.example.demo.user.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,8 @@ public class NoteeController {
     NoteRepository noteRepository;
     @Autowired
     CategorieRepository categorieRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @PostMapping("add/{id}/{id_cate}")
     public Note addNote(@RequestBody Note note,@PathVariable Long id, @PathVariable Long id_cate){
@@ -50,9 +54,10 @@ public class NoteeController {
         return noteRepository.findAll();
     }
 
-    @GetMapping("liste/{id}")
-    public List<Note> noteParCategorie(@PathVariable Long id){
+    @GetMapping("liste/{id}/{id_user}")
+    public List<Note> noteParCategorie(@PathVariable Long id,@PathVariable Long id_user){
         Categorie categorie = categorieRepository.findById(id).get();
-        return noteRepository.findByCategorie(categorie);
+        Utilisateur utilisateur = userRepository.findById(id_user).get();
+        return noteRepository.findByCategorieAndUtilisateur(categorie, utilisateur);
     }
 }
